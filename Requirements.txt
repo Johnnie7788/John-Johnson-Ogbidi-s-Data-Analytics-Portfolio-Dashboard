@@ -1,0 +1,6 @@
+
+
+Dependencies:
+streamlit
+pandas
+plotly
