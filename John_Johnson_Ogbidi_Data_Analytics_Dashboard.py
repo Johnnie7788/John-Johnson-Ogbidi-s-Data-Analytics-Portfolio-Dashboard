@@ -9,19 +9,59 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Theme and styling options
-st.set_page_config(page_title="John Johnson Ogbidi's Portfolio", layout="centered")
-
-# Header Section with Introduction
-st.title("John Johnson Ogbidi's Data Analytics Portfolio Dashboard")
-st.subheader("Data Analyst | Business Intelligence Specialist | Predictive Modeling Expert")
+# Custom CSS to create 3D-like sections and backgrounds
 st.markdown("""
-Welcome to my professional portfolio. I specialize in advanced data analytics, predictive modeling, and business intelligence solutions. 
-This dashboard presents my work experience, technical skills, projects, education, and certifications.
-""")
+    <style>
+    .section {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .section-header {
+        color: #fff;
+        background-color: #007BFF;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.5em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .education-section {
+        background-color: #007BFF;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .certifications-section {
+        background-color: #28A745;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .contact-section {
+        background-color: #6C757D;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# Work Experience Section
-st.header("📁 Work Experience Timeline")
+# Streamlit Layout of the dashboard
+st.title("John Johnson Ogbidi's Data Analytics Portfolio Dashboard")
+
+# Work Experience Timeline with Tooltip
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Work Experience Timeline</div>', unsafe_allow_html=True)
+
 df_work_exp = pd.DataFrame({
     "Role": ["Data Analyst (Research)", "Data Analyst & Director of Operations"],
     "Company": [
@@ -46,15 +86,18 @@ fig_work_exp = px.bar(
     color_discrete_sequence=["#007BFF", "#00BFFF"]
 )
 st.plotly_chart(fig_work_exp)
+st.markdown('</div>', unsafe_allow_html=True)
 
-# Technical Skills Section
-st.header("🔧 Technical Skills Breakdown")
+# Skills Breakdown per Role with Labels
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Technical Skills Applied in Roles</div>', unsafe_allow_html=True)
+
 skills_by_role = {
     "Role": ["Data Analyst (Research)", "Data Analyst & Director of Operations"],
     "Python": [90, 80],
     "SQL": [85, 75],
     "Power BI": [70, 60],
-    "Tableau": [0, 90],  
+    "Tableau": [0, 90],
     "Machine Learning": [80, 65],
     "Azure": [75, 50],
     "R": [60, 50],
@@ -65,16 +108,21 @@ df_skills_by_role = pd.DataFrame(skills_by_role)
 fig_skills_by_role = px.bar(
     df_skills_by_role,
     x='Role',
-    y=['Python', 'SQL', 'Power BI', 'Tableau', 'Machine Learning', 'Azure', 'R', 'KNIME', 'Office 365'],
+    y=['Python', 'SQL', 'Power BI', 'Tableau', 'Machine Learning', 'Azure',
+       'R', 'KNIME', 'Office 365 (Excel, Word, PowerPoint)'],
     title="Technical Skills by Role",
     labels={"value": "Skill Level (%)"},
     barmode='group',
+    text_auto=True,
     color_discrete_sequence=px.colors.qualitative.Prism
 )
 st.plotly_chart(fig_skills_by_role)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Project Impact Section
-st.header("📊 Project Impact")
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Project Impact</div>', unsafe_allow_html=True)
+
 df_projects = pd.DataFrame({
     "Project": [
         "Subsurface Prediction Accuracy",
@@ -109,26 +157,35 @@ fig_projects = px.bar(
     text='Key Detail',
     title="Impact of Key Projects (in %)",
     hover_data={'Key Detail': True},
-    color_discrete_sequence=["#FF7F0E"],
+    color_discrete_sequence=["#FF7F0E"]
 )
 st.plotly_chart(fig_projects)
+st.markdown('</div>', unsafe_allow_html=True)
 
-# Education Section with Classic Card Layout
-st.header("🎓 Education")
-st.markdown("""
-- **MSc Data Analytics** | University of Central Lancashire, England (2023)  
-- **MSc Geophysics** | Delta State University, Nigeria (2014)  
-- **BSc Physics** | Delta State University, Nigeria (2007)
-""")
+# Overall Technical Skills Breakdown
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Overall Technical Skills Breakdown</div>', unsafe_allow_html=True)
 
-# Certifications Section
-st.header("📜 Certifications")
-st.markdown("""
-- **SAS Certified: Business Intelligence and Data Mining**
-""")
+df_overall_skills = pd.DataFrame({
+    "Skill": [
+        "Python", "SQL", "Power BI", "Tableau", "Machine Learning",
+        "Azure", "R", "KNIME", "Office 365", "SAS", "SAP"
+    ],
+    "Proficiency": [90, 80, 65, 45, 75, 60, 55, 35, 90, 70, 60]
+})
+fig_overall_skills = px.pie(
+    df_overall_skills,
+    names='Skill',
+    values='Proficiency',
+    title="Overall Technical Skills Breakdown"
+)
+st.plotly_chart(fig_overall_skills)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # GitHub Scripts represented in alphabetical order
-st.header("💻 GitHub Scripts (Alphabetical Order)")
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="section-header">GitHub Scripts (Alphabetical Order)</div>', unsafe_allow_html=True)
+
 scripts_data = pd.DataFrame({
     "Script": [
         "AI-Driven Data Governance & Business Insights Generation",
@@ -163,12 +220,30 @@ fig_scripts.update_layout(
     yaxis_title="Count"
 )
 st.plotly_chart(fig_scripts)
+st.markdown('</div>', unsafe_allow_html=True)
 
-# Contact Information
-st.header("📞 Contact Information")
+# Education Section
+st.markdown('<div class="education-section">', unsafe_allow_html=True)
+st.markdown("""
+- **MSc Data Analytics, University of Central Lancashire, England (2023)**  
+- **MSc Geophysics, Delta State University, Nigeria (2014)**  
+- **BSc Physics, Delta State University, Nigeria (2007)**  
+""")
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Certifications Section
+st.markdown('<div class="certifications-section">', unsafe_allow_html=True)
+st.markdown("""
+- **SAS Certified: Business Intelligence and Data Mining**
+""")
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Contact Information Section
+st.markdown('<div class="contact-section">', unsafe_allow_html=True)
 st.markdown("""
 - **Email**: johnjohnsonogbidi@gmail.com  
 - **Phone**: +49 162 5839423  
 - **GitHub**: [https://github.com/Johnnie7788/Business-Intelligence-Analytics-Scripts](https://github.com/Johnnie7788/Business-Intelligence-Analytics-Scripts)
 """)
+st.markdown('</div>', unsafe_allow_html=True)
 
