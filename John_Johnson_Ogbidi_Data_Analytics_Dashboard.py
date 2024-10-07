@@ -9,6 +9,19 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+# Set page background image (URL or local image path)
+page_bg_img = '''
+<style>
+body {
+    background-image: url("https://your-image-url-here.com/background.jpg");
+    background-size: cover;
+    color: white;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Work Experience Data with Tooltip
 df_work_exp = pd.DataFrame({
     "Role": ["Data Analyst (Research)", "Data Analyst & Director of Operations"],
@@ -23,7 +36,7 @@ df_work_exp = pd.DataFrame({
     ]
 })
 
-# Expanded Technical Skills Breakdown with consistent lengths
+# Skills Data
 skills_data = pd.DataFrame({
     "Role": ["Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)", "Data Analyst (Research)",
              "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations", "Data Analyst & Director of Operations"],
@@ -62,7 +75,7 @@ df_projects = pd.DataFrame({
     ]
 })
 
-# GitHub Scripts represented in alphabetical order
+# GitHub Scripts
 scripts_data = pd.DataFrame({
     "Script": [
         "AI-Driven Data Governance & Business Insights Generation",
@@ -93,10 +106,11 @@ overall_skills = {
 
 df_overall_skills = pd.DataFrame(overall_skills)
 
-# Streamlit Layout of the dashboard
+# Streamlit Layout of the dashboard with section backgrounds
 st.title("John Johnson Ogbidi's Data Analytics Portfolio Dashboard")
 
 # Work Experience Timeline with Tooltip
+st.markdown('''<style>div[role="heading"]{background-color:#3b5998;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Work Experience Timeline")
 fig_work_exp = px.bar(
     df_work_exp,
@@ -111,6 +125,7 @@ fig_work_exp = px.bar(
 st.plotly_chart(fig_work_exp)
 
 # Skills Breakdown per Role with Labels
+st.markdown('''<style>div[role="heading"]{background-color:#4CAF50;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Technical Skills Applied in Roles")
 fig_skills_by_role = px.bar(
     skills_data,
@@ -124,6 +139,7 @@ fig_skills_by_role = px.bar(
 st.plotly_chart(fig_skills_by_role)
 
 # Project Impact with Tooltips and Labels
+st.markdown('''<style>div[role="heading"]{background-color:#ff9800;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Project Impact")
 fig_projects = px.bar(
     df_projects,
@@ -137,6 +153,7 @@ fig_projects = px.bar(
 st.plotly_chart(fig_projects)
 
 # Overall Technical Skills Breakdown
+st.markdown('''<style>div[role="heading"]{background-color:#9C27B0;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Overall Technical Skills Breakdown")
 fig_overall_skills = px.pie(
     df_overall_skills,
@@ -147,6 +164,7 @@ fig_overall_skills = px.pie(
 st.plotly_chart(fig_overall_skills)
 
 # GitHub Scripts represented in alphabetical order
+st.markdown('''<style>div[role="heading"]{background-color:#00BCD4;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("GitHub Scripts (Alphabetical Order)")
 fig_scripts = go.Figure(data=[
     go.Bar(
@@ -165,6 +183,7 @@ fig_scripts = go.Figure(data=[
 st.plotly_chart(fig_scripts)
 
 # Education Section
+st.markdown('''<style>div[role="heading"]{background-color:#FFC107;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Education")
 st.markdown("""
 - **MSc Data Analytics, University of Central Lancashire, England (2023)**
@@ -173,12 +192,14 @@ st.markdown("""
 """)
 
 # Certifications Section
+st.markdown('''<style>div[role="heading"]{background-color:#f44336;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Certifications")
 st.markdown("""
 - **SAS Certified: Business Intelligence and Data Mining**
 """)
 
 # Contact Information
+st.markdown('''<style>div[role="heading"]{background-color:#607D8B;padding:10px;border-radius:10px;}</style>''', unsafe_allow_html=True)
 st.header("Contact Information")
 st.markdown("""
 - **Email**: johnjohnsonogbidi@gmail.com  
