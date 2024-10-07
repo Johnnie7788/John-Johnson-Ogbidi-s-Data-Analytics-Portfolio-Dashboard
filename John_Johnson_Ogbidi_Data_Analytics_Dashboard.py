@@ -99,7 +99,7 @@ overall_skills = {
 
 df_overall_skills = pd.DataFrame(overall_skills)
 
-# Layout of the dashboard in Streamlit
+# Streamlit Layout of the dashboard
 st.title("John Johnson Ogbidi's Data Analytics Portfolio Dashboard")
 
 # Work Experience Timeline with Tooltip
@@ -170,6 +170,20 @@ fig_scripts = go.Figure(data=[
     yaxis_title="Count"
 )
 st.plotly_chart(fig_scripts)
+
+# Education Section
+st.header("Education")
+st.markdown("""
+- **MSc Data Analytics, University of Central Lancashire, England (2023)**
+- **MSc Geophysics, Delta State University, Nigeria (2014)**
+- **BSc Physics, Delta State University, Nigeria (2007)**
+""")
+
+# Certifications Section
+st.header("Certifications")
+st.markdown("""
+- **SAS Certified: Business Intelligence and Data Mining**
+""")
 
 # Contact Information
 st.header("Contact Information")
